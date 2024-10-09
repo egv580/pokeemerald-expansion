@@ -45,6 +45,7 @@
 #include "menu.h"
 #include "pokemon_summary_screen.h"
 
+static bool8 IsItemFlute(u16 item);
 static void PlayerBufferExecCompleted(u32 battler);
 static void PlayerHandleLoadMonSprite(u32 battler);
 static void PlayerHandleSwitchInAnim(u32 battler);
@@ -162,6 +163,13 @@ static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(u32 battler) =
     [CONTROLLER_DEBUGMENU]                = PlayerHandleBattleDebug,
     [CONTROLLER_TERMINATOR_NOP]           = BtlController_TerminatorNop
 };
+
+static bool8 IsItemFlute(u16 item)
+{
+    if (item == ITEM_BLUE_FLUTE || item == ITEM_RED_FLUTE || item == ITEM_YELLOW_FLUTE)
+        return TRUE;
+    return FALSE;
+}
 
 void SetControllerToPlayer(u32 battler)
 {

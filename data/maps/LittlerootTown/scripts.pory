@@ -1031,7 +1031,7 @@ script LittlerootTown_EventScript_Devon_Ask {
 	msgbox("Walk with him?", MSGBOX_YESNO)
 	if(var(VAR_RESULT) == YES){
 		msgbox("Great! Let's go!")
-		setfollower(9, 0)
+		setfollower(9, FOLLOWER_FLAG_HAS_RUNNING_FRAMES, 0)
 		}
     else{
 		msgbox(":(")
