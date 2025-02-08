@@ -1,0 +1,131 @@
+raw `
+RustboroCity_Mart_MapScripts::
+	.byte 0
+
+RustboroCity_Mart_EventScript_Clerk::
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	goto_if_unset FLAG_MET_DEVON_EMPLOYEE, RustboroCity_Mart_EventScript_PokemartBasic
+	goto_if_set FLAG_MET_DEVON_EMPLOYEE, RustboroCity_Mart_EventScript_PokemartExpanded
+	end
+
+RustboroCity_Mart_EventScript_PokemartBasic::
+	pokemart RustboroCity_Mart_Pokemart_Basic
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+RustboroCity_Mart_Pokemart_Basic:
+	.2byte ITEM_POKE_BALL
+	.2byte ITEM_POTION
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_REPEL
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_X_DEFENSE
+	.2byte ITEM_NONE
+	release
+	end
+
+RustboroCity_Mart_EventScript_PokemartExpanded::
+	pokemart RustboroCity_Mart_Pokemart_Expanded
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+RustboroCity_Mart_Pokemart_Expanded:
+	.2byte ITEM_POKE_BALL
+	.2byte ITEM_TIMER_BALL
+	.2byte ITEM_REPEAT_BALL
+	.2byte ITEM_POTION
+	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_ANTIDOTE
+	.2byte ITEM_PARALYZE_HEAL
+	.2byte ITEM_ESCAPE_ROPE
+	.2byte ITEM_REPEL
+	.2byte ITEM_X_SPEED
+	.2byte ITEM_X_ATTACK
+	.2byte ITEM_X_DEFENSE
+	.2byte ITEM_NONE
+	release
+	end
+
+RustboroCity_Mart_EventScript_PokefanF::
+	msgbox RustboroCity_Mart_Text_StockIsLimited, MSGBOX_NPC
+	end
+
+RustboroCity_Mart_EventScript_Boy::
+	msgbox RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead, MSGBOX_NPC
+	end
+
+RustboroCity_Mart_EventScript_BugCatcher::
+	msgbox RustboroCity_Mart_Text_GettingEscapeRopeJustInCase, MSGBOX_NPC
+	end
+
+RustboroCity_Mart_Text_StockIsLimited:
+	.string "POKéMARTs are very affordable\n"
+	.string "and convenient.\p"
+    .string "But the stock is limited, so\n"
+	.string "you have to plan your purchases.\p"
+	.string "If they run out of an item, it\n"
+	.string "takes a day or so to restock.$"
+
+RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish:
+	.string "I'm buying some PARLYZ HEALS and\n"
+	.string "ANTIDOTES.\p"
+	.string "Just in case I run into SHROOMISH\n"
+	.string "in PETALBURG WOODS.$"
+
+RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead:
+	.string "My POKéMON evolved.\n"
+	.string "It has a lot of HP now.\p"
+	.string "I should buy SUPER POTIONS for it\n"
+	.string "instead of ordinary POTIONS.$"
+
+RustboroCity_Mart_Text_GettingEscapeRopeJustInCase:
+	.string "I'm getting an ESCAPE ROPE just in\n"
+	.string "case I get lost in a cave.\p"
+	.string "I just need to use it to get back to\n"
+	.string "the entrance.$"
+
+
+`
+
+script RustboroMart_Script_RichBoy {
+	lockall
+	if (flag(FLAG_RECEIVED_ISLANDS_TICKET) != TRUE) {
+    msgbox(RustboroCity_Mart_Text_RichBoyEmptiedStock2, MSGBOX_NPC)
+	giveitem(ITEM_ISLANDS_TICKET, 1)
+	setflag(FLAG_RECEIVED_ISLANDS_TICKET)
+	msgbox(RustboroCity_Mart_Text_RichBoyEmptiedStock3, MSGBOX_DEFAULT)
+	closemessage
+	setvar(VAR_RUSTBORO_CITY_STATE, 2)
+	}
+	else {
+		msgbox(RustboroCity_Mart_Text_RichBoyEmptiedStock3, MSGBOX_NPC)
+	}
+	releaseall
+}
+
+text RustboroMart_Text_RichBoyIntro {
+    format("When I shop, I always buy in bulk. Even if it means {COLOR BLUE}{SHADOW LIGHT_BLUE}emptying the stock{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}, it's better than having to go to the store every other day. You should try it.")
+}
+
+text RustboroMart_Text_RichBoyEmptiedStock1 {
+    format("Oh, your pokemon looks very good! No wonder you bought all those potions, you take very good care of it.")
+}
+
+text RustboroCity_Mart_Text_RichBoyEmptiedStock2 {
+	format("What do you mean, you're lost...?\p"
+	"Oh, that's awful. I would go to RUSTBORO PORT if I were you. They have a weekly ferry service to MOSSDEEP and EVER GRANDE. Here, you can have my ticket.")
+}
+
+text RustboroCity_Mart_Text_RichBoyEmptiedStock3 {
+	format("I was going to go for a sightseeing trip, but I guess I'd rather spend my afternoon golfing. You better hurry, the ferry should be leaving soon.")
+}

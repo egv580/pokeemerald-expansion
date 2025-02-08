@@ -1,0 +1,248 @@
+raw `
+RustboroCity_CuttersHouse_MapScripts::
+	.byte 0
+
+RustboroCity_CuttersHouse_EventScript_Cutter::
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_HM_CUT, RustboroCity_CuttersHouse_EventScript_ExplainCut
+	msgbox RustboroCity_CuttersHouse_Text_YouCanPutThisHMToGoodUse, MSGBOX_DEFAULT
+	giveitem ITEM_HM_CUT
+	setflag FLAG_RECEIVED_HM_CUT
+	msgbox RustboroCity_CuttersHouse_Text_ExplainCut, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_CuttersHouse_EventScript_ExplainCut::
+	msgbox RustboroCity_CuttersHouse_Text_ExplainCut, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_CuttersHouse_EventScript_Lass::
+	msgbox RustboroCity_CuttersHouse_Text_DadHelpedClearLandOfTrees, MSGBOX_NPC
+	end
+
+RustboroCity_CuttersHouse_Text_YouCanPutThisHMToGoodUse:
+	.string "That determined expression…\n"
+	.string "That limber way you move…\l"
+	.string "And your well-trained POKéMON…\p"
+	.string "You're obviously a skilled TRAINER!\p"
+	.string "No, wait, don't say a word.\n"
+	.string "I can tell just by looking at you.\p"
+	.string "I'm sure that you can put this\n"
+	.string "HIDDEN MACHINE to good use.\p"
+	.string "No need to be modest or shy.\n"
+	.string "Go on, take it!$"
+
+RustboroCity_CuttersHouse_Text_ExplainCut:
+	.string "That HIDDEN MACHINE, or HM for\n"
+	.string "short, is CUT.\p"
+	.string "An HM move is one that can be used\n"
+	.string "by POKéMON outside of battle.\p"
+	.string "Any POKéMON that's learned CUT can\n"
+	.string "chop down thin trees if the TRAINER\l"
+	.string "has earned the STONE BADGE.\p"
+	.string "And, unlike a TM, an HM can be used\n"
+	.string "more than once.$"
+
+RustboroCity_CuttersHouse_Text_DadHelpedClearLandOfTrees:
+	.string "When they were expanding the city of\n"
+	.string "RUSTBORO, my dad helped out.\p"
+	.string "He made his POKéMON use CUT to clear\n"
+	.string "the land of trees.$"
+
+`
+
+script RustbotoCity_DevonsHouse_EventScript_Devon {
+	lockall
+	faceplayer
+	msgbox(RustboroCity_DevonsHouse_Text_FirstArrival, MSGBOX_NPC)
+	releaseall
+
+}
+
+script DevonsHouse_Fridge {
+	lockall
+	msgbox(RustboroCity_DevonsHouse_Text_Fridge, MSGBOX_SIGN)
+	releaseall
+}
+
+script DevonsHouse_Sink {
+	lockall
+	msgbox(RustboroCity_DevonsHouse_Text_Sink, MSGBOX_SIGN)
+	releaseall
+}
+
+script DevonsHouse_Bed {
+	lockall
+	msgbox(RustboroCity_DevonsHouse_Text_Bed, MSGBOX_SIGN)
+	releaseall
+}
+
+script DevonsHouse_Commode {
+	lockall
+	msgbox(RustboroCity_DevonsHouse_Text_Commode, MSGBOX_SIGN)
+	releaseall
+}
+
+script DevonsHouse_Table {
+	lockall
+	msgbox(RustboroCity_DevonsHouse_Text_Table, MSGBOX_SIGN)
+	releaseall
+}
+
+script DevonsHouse_Plant {
+	lockall
+	msgbox(RustboroCity_DevonsHouse_Text_Plant, MSGBOX_SIGN)
+	releaseall
+}
+
+script DevonsHouse_RockDisplay1 {
+	lockall
+	msgbox(RustboroCity_DevonsHouse_Text_Stone1, MSGBOX_SIGN)
+	releaseall
+}
+
+script DevonsHouse_RockDisplay2 {
+	lockall
+	msgbox(RustboroCity_DevonsHouse_Text_Stone2, MSGBOX_SIGN)
+	releaseall
+}
+
+script DevonsHouse_Emerald {
+	lockall
+	msgbox(RustboroCity_DevonsHouse_Text_StoneEmerald, MSGBOX_SIGN)
+	applymovement(1, Movement_DevonsHouse_Emerald)
+	msgbox(RustboroCity_DevonsHouse_Text_DevonsEmerald1, MSGBOX_SIGN)
+	applymovement(1, Common_Movement_ExclamationMark)
+	msgbox(RustboroCity_DevonsHouse_Text_DevonsEmerald2, MSGBOX_SIGN)
+	releaseall
+}
+
+
+movement Movement_DevonsHouse_Emerald {
+	walk_left * 2
+	walk_up * 1
+	face_left
+}
+
+text RustboroCity_DevonsHouse_Text_Fridge {
+	format("It's a small fridge...\n"
+	"Is this really enough for one person?")
+}
+
+text RustboroCity_DevonsHouse_Text_Sink {
+	format("A sink for washing dishes.\n"
+	"Does DEVON do this himself every day?")
+}
+
+text RustboroCity_DevonsHouse_Text_Bed {
+	format("The bed seems almost too small.\n")
+}
+
+text RustboroCity_DevonsHouse_Text_Commode {
+	format("An old commode, where items are arranged neatly.")
+}
+
+text RustboroCity_DevonsHouse_Text_Table {
+	format("A very small table. It's probably only enough for a quick snack.")
+}
+
+text RustboroCity_DevonsHouse_Text_Plant {
+	format("A simple houseplant.\n"
+	"It's well-watered, but could use some high-quality mulch.")
+}
+
+text RustboroCity_DevonsHouse_Text_FirstArrival {
+    format("DEVON: Well, here we are!\n"
+    "This is my place.\p"
+    "I know it's not much, but it's home."
+    )
+}
+
+text RustboroCity_DevonsHouse_Text_FirstArrival2 {
+    format("DEVON: We're in the company housing district."
+    "It's where all the employees of MAUVILLE MINING live."
+    "Or, former employees, in my case...\p"
+    "I bought the house from the company with my salary money, so they can't take it away from me now."
+    "It's actually all I have now."
+    "But I think it was worth it."
+    )
+}
+
+text RustboroCity_DevonsHouse_Text_FirstArrival3 {
+    format("DEVON: What about you? What brings you here?"
+    "And why were those people after you?"
+    )
+}
+
+text RustboroCity_DevonsHouse_Text_FirstArrival4 {
+    format("DEVON: I just realized I only have one chair... That's a bit embarrassing."
+    "Why don't you sit down? I'll stand. It's not often I have company."
+    )
+}
+
+text RustboroCity_DevonsHouse_Text_FirstArrival5 {
+    format("... ... ...\p"
+    "DEVON: So you're the PRINCESS of EVER GRANDE? And you were kidnapped?!\p"
+    "By who?"
+    "... ... ...\p"
+    "You're saying they looked like mining company employees?!"
+    )
+}
+
+text RustboroCity_DevonsHouse_Text_FirstArrival6 {
+    format("DEVON: That's strange... And very bad. I can't imagine how frightening that is."
+    "I hope you know I'd never sell you out. Is there anything I can do to help?"
+    "Maybe there's a way I can help you get back home..."
+    )
+}
+
+text RustboroCity_DevonsHouse_Text_FirstArrival7 {
+    format("DEVON: I got it! We can go to SLATEPORT CITY! They have a ferry service."
+    "Maybe there's one that'll be departing for EVER GRANDE."
+    "I'll get you aboard. And... maybe I can also find a place to go. I really don't want to stay here."
+    )
+}
+
+
+text RustboroCity_DevonsHouse_Text_Stone1 {
+    format("It's a piece of PYRITE.")
+}
+
+text RustboroCity_DevonsHouse_Text_Stone2 {
+    format("It's a regular ROCK from Rustboro Caves.")
+}
+
+text RustboroCity_DevonsHouse_Text_StoneEmerald {
+    format("It's a fake emerald.")
+}
+
+text RustboroCity_DevonsHouse_Text_DevonsEmerald1 {
+    format("DEVON: That's my most prized possession, a real emerald.")
+}
+
+text RustboroCity_DevonsHouse_Text_DevonsEmerald2 {
+    format("DEVON: You mean it's fake? It's actually green fluorite...?"
+	"That's interesting! You have a sharp eye!"
+	"I don't even know what fluorite is... heh. But it all sounds so interesting."
+	"I wish I had more time to read up on the natural world, instead of just taking advantage of it."
+	)
+}
+
+text RustboroCity_DevonsHouse_Text_ShowDevonRealEmerald {
+    format("You showed DEVON the REAL EMERALD.")
+}
+
+text RustboroCity_DevonsHouse_Text_DevonsEmerald3 {
+    format("DEVON: So that's a real emerald..."
+	"I see, the color is a bit more bluish-green."
+	"Thank you for showing me."
+	"I guess even though mine's fake, it's still special to me."
+	"My father found it by accident when we were walking somewhere. He thought it was real, and so did I."
+	"Now it's the only memory I have of him..."
+	"Where did you get yours?"
+	"So it was a gift from your father as well. I can tell it must be special to you."
+	"I promise I'll help you get back to your family."
+	)
+}

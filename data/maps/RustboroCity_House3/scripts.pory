@@ -1,0 +1,103 @@
+raw `
+RustboroCity_House3_MapScripts::
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, RustboroCity_MayorsHouse_OnWarp
+	.byte 0
+
+RustboroCity_MayorsHouse_OnWarp:
+    map_script_2 VAR_RUSTBORO_CITY_STATE, 3, RustboroCity_MayorsHouse_HideGuards
+    .2byte 0
+
+RustboroCity_House3_EventScript_OldMan::
+	msgbox RustboroCity_House3_Text_IGivePerfectlySuitedNicknames, MSGBOX_NPC
+	end
+
+RustboroCity_House3_EventScript_OldWoman::
+	msgbox RustboroCity_House3_Text_NamingPikachuPekachu, MSGBOX_NPC
+	end
+
+@ Misspelling on purpose, see nickname
+RustboroCity_House3_EventScript_Pekachu::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_PIKACHU, CRY_MODE_NORMAL
+	msgbox RustboroCity_House3_Text_Pekachu, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+RustboroCity_House3_Text_IGivePerfectlySuitedNicknames:
+	.string "For my own POKéMON, I give them\n"
+	.string "perfectly suited nicknames!\p"
+	.string "It's my expression of, uh…\n"
+	.string "originality, yes, that's it!$"
+
+RustboroCity_House3_Text_NamingPikachuPekachu:
+	.string "But giving the name PEKACHU to\n"
+	.string "a PIKACHU? It seems pointless.\p"
+	.string "I suppose it is good to use a name\n"
+	.string "that's easy to understand, but…$"
+
+RustboroCity_House3_Text_Pekachu:
+	.string "PEKACHU: Peka!$"
+
+RustboroCity_MayorsHouse_Text_NotSeeingAnyone:
+	.string "GUARD: Sorry, but the MAYOR\n"
+    .string "isn't taking appointments yet.$"
+
+RustboroCity_MayorsHouse_Text_Man1:
+	.string "I'm starting a petition to get more\n"
+    .string "money for the POKeMON GYM.\p"
+    .string "I think the MAYOR invests too much\n"
+    .string "in mining and land development.$"
+
+RustboroCity_MayorsHouse_Text_Man2:
+	.string "The MAYOR keeps saying that he wants\n"
+    .string "to beautify the city.\p"
+    .string "But he only does it in certain places.$"
+
+RustboroCity_MayorsHouse_Text_Mayor1:
+	.string "MAYOR: Munch, munch...\p"
+	.string "Mmm, this tea is delicious! And the cake!\n"
+	.string "Delightful!\p"
+	.string "… … …\n"
+	.string "Hmm? Who are you?\p"
+	.string "Oh, hello! Sorry, but I'm all done for thel\n"
+    .string "day. I'll resume appointments tomorrow.\p"
+	.string "… What?!\n"
+	.string "You're requesting a ferry to EVER GRANDE?\p"
+	.string "I'm sorry, but I can't force the ferry\n"
+	.string "service to change their policies.\p"
+	.string "I understand this might seem like an\n"
+	.string "emergency to you, but we are all but small\p"
+	.string "drops in one big sea.\p"
+	.string "What's that? The PRINCESS OF EVER GRANDE?!\n"
+	.string "But how am I to believe you?\p"
+	.string "How on Earth did you end up here, then?!\n"
+	.string "A kidnapping?!\p" 
+	.string "I'm sorry, but this seems far too\n"
+	.string "preposterous to me. I cannot help you.$"
+
+`
+script RustboroCity_MayorsHouse_HideGuards {
+	setflag(FLAG_HIDE_MAYORS_GUARDS)
+	removeobject(7)
+	removeobject(8)
+}
+
+script RustboroCity_MayorsHouse_Script_Guards {
+    msgbox(RustboroCity_MayorsHouse_Text_NotSeeingAnyone, MSGBOX_NPC)
+}
+
+script RustboroCity_MayorsHouse_Script_Man1 {
+    msgbox(RustboroCity_MayorsHouse_Text_Man1, MSGBOX_NPC)
+}
+
+script RustboroCity_MayorsHouse_Script_Man2 {
+    msgbox(RustboroCity_MayorsHouse_Text_Man2, MSGBOX_NPC)
+}
+
+script RustboroCity_MayorsHouse_Script_Mayor1 {
+    msgbox(RustboroCity_MayorsHouse_Text_Mayor1, MSGBOX_NPC)
+	setvar(VAR_RUSTBORO_CITY_STATE, 4)
+}
