@@ -27,12 +27,12 @@ RustboroCity_PokemonSchool_EventScript_Poison::
 	end
 
 RustboroCity_PokemonSchool_EventScript_Paralysis::
-	msgbox RustboroCity_PokemonSchool_Text_ExplainParalysis, MSGBOX_DEFAULT
+	msgbox RustboroCity_PokemonSchool_Text_Sootopolitans, MSGBOX_DEFAULT
 	goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic
 	end
 
 RustboroCity_PokemonSchool_EventScript_Sleep::
-	msgbox RustboroCity_PokemonSchool_Text_ExplainSleep, MSGBOX_DEFAULT
+	msgbox RustboroCity_PokemonSchool_Text_TheIslands, MSGBOX_DEFAULT
 	goto RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic
 	end
 
@@ -51,7 +51,7 @@ RustboroCity_PokemonSchool_EventScript_ExitTopicSelect::
 	end
 
 RustboroCity_PokemonSchool_EventScript_GameboyKid1::
-	msgbox RustboroCity_PokemonSchool_Text_TradingRightNow, MSGBOX_NPC
+	msgbox RustboroCity_PokemonSchool_Text_UltraWormholes, MSGBOX_NPC
 	end
 
 RustboroCity_PokemonSchool_EventScript_GameboyKid2::
@@ -63,11 +63,15 @@ RustboroCity_PokemonSchool_EventScript_RichBoy::
 	end
 
 RustboroCity_PokemonSchool_EventScript_Lass::
-	msgbox RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself, MSGBOX_NPC
+	msgbox RustboroCity_PokemonSchool_Text_Draconids, MSGBOX_NPC
 	end
 
 RustboroCity_PokemonSchool_EventScript_SchoolKidM::
 	msgbox RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry, MSGBOX_NPC
+	end
+
+RustboroCity_PokemonSchool_EventScript_PerplexedKid::
+	msgbox RustboroCity_PokemonSchool_Text_ItsTooHard, MSGBOX_NPC
 	end
 
 RustboroCity_PokemonSchool_EventScript_StudentNotebook::
@@ -199,14 +203,33 @@ RustboroCity_PokemonSchool_EventScript_ScottWatchStudents::
 	release
 	end
 
+RustboroCity_PokemonSchool_EventScript_ChildGenius::
+	lock
+	faceplayer
+	msgbox RustboroCity_PokemonSchool_Text_ChildGenius, MSGBOX_DEFAULT
+	closemessage
+	showmonpic SPECIES_RAYQUAZA, 10, 3
+	playmoncry SPECIES_RAYQUAZA, CRY_MODE_NORMAL
+	waitmoncry
+	hidemonpic
+	delay 10
+	showmonpic SPECIES_JIRACHI, 10, 3
+	playmoncry SPECIES_JIRACHI, CRY_MODE_NORMAL
+	waitmoncry
+	hidemonpic
+	delay 10
+	msgbox RustboroCity_PokemonSchool_Text_ChildGeniusDrawings, MSGBOX_DEFAULT
+	release
+	end
+
 RustboroCity_PokemonSchool_Text_BlackboardListsStatusChanges:
-	.string "The blackboard lists status changes\n"
-	.string "that may affect POKéMON in battle.$"
+	.string "The blackboard is covered in equations\n"
+	.string "and diagrams of rockets.$"
 
 RustboroCity_PokemonSchool_Text_ReadWhichTopic:
 	.string "Which topic do you want to read?$"
 
-RustboroCity_PokemonSchool_Text_ExplainPoison:
+RustboroCity_PokemonSchool_Text_ExplainPoison2:
 	.string "If a POKéMON is poisoned, it will\n"
 	.string "steadily lose HP.\p"
 	.string "The effects of poison remain after\n"
@@ -243,12 +266,64 @@ RustboroCity_PokemonSchool_Text_ExplainFreeze:
 	.string "It will remain frozen after battle.\n"
 	.string "Thaw it out using an ICE HEAL.$"
 
-RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw:
+RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw2:
 	.string "Students who don't study get a little\n"
 	.string "taste of my QUICK CLAW.\p"
 	.string "Whether or not you are a good student \n"
 	.string "will be evident from the way you use\l"
 	.string "this item.$"
+
+RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw:
+	.string "Rocketry is a beautiful and\n"
+	.string "exciting new field!\p"
+	.string "These kids were missing out on a lot\n"
+	.string "with their regular teacher.\l"
+	.string "I'm showing them the wonders of science!\p"
+	.string "Here, why don't you get a souvenir too?$"
+
+RustboroCity_PokemonSchool_Text_ExplainPoison:
+	.string "Earth is the place that both humans\n"
+	.string "and POKéMON call home.\p"
+	.string "But some legends say that POKéMON\n"
+	.string "dwell in outer space as well.\p"
+	.string "These stories used to be dismissed as\n"
+	.string "fantasy, but recently, science has\l"
+	.string "brought evidence that there might be\l"
+	.string "something out there.\p"
+	.string "Colorful flares have been observed\n"
+	.string "that have a radiation profile similar\l"
+	.string "to a black hole. They appear randomly,\l"
+	.string "and mimic the energy of POKéMON attacks.$"
+
+
+RustboroCity_PokemonSchool_Text_Sootopolitans:
+	.string "Apart from the DRACONIDs, we know\n"
+	.string "of another ancient people native to\l"
+	.string "the HOENN region:\l"
+	.string "the SOOTOPOLITAN people.\p"
+	.string "These people dwelled in the crater that\n"
+	.string "is now SOOTOPOLIS CITY.\p"
+	.string "However, recent archaeological evidence\n"
+	.string "shows that they were originally native to\l"
+	.string "the independent island-cities: MOSSDEEP and\l"
+	.string "EVER GRANDE.\p"
+
+
+RustboroCity_PokemonSchool_Text_TheIslands:
+	.string "MOSSDEEP and EVER GRANDE were less\n"
+	.string "affected by the ancient meteor showers\l"
+	.string "than the rest of HOENN.\p"
+	.string "To this day, these cities enjoy a mild\n"
+	.string "climate and good ecology.\p"
+	.string "Interestingly, however, geologists\n"
+	.string "have found white-colored rocks in\l"
+	.string "MOSSDEEP and EVER GRANDE, made of the\l"
+	.string "same material as the famous white rocks\l"
+	.string "that form SOOTOPOLIS CITY.\p"
+	.string "The properties of this rock differ\n"
+	.string "from other mineral samples on Earth,\l"
+	.string "leading some to speculate that it\l"
+	.string "originated from space.$"
 
 RustboroCity_PokemonSchool_Text_ExplainQuickClaw:
 	.string "A POKéMON holding the QUICK CLAW will\n"
@@ -267,39 +342,63 @@ RustboroCity_PokemonSchool_Text_AlwaysWantedSeedot:
 	.string "I always wanted a SEEDOT, and\n"
 	.string "I'm finally getting one!$"
 
-RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems:
-	.string "POKéMON can hold items, but they\n"
-	.string "don't know what to do with man-made\l"
-	.string "items like POTION and ANTIDOTE.$"
+RustboroCity_PokemonSchool_Text_ChildGenius:
+	.string "I'm a child genius!\n"
+	.string "That means I already know all of this.\p"
+	.string "So I'm just doodling things in my notebook.\n"
+	.string "Here, I'll let you look!$"
 
-RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself:
-	.string "You know how some POKéMON moves can\n"
-	.string "confuse a POKéMON?\p"
-	.string "A confused POKéMON will sometimes\n"
-	.string "attack itself without meaning to.\p"
-	.string "But once it leaves battle, it will\n"
-	.string "return to normal.$"
+RustboroCity_PokemonSchool_Text_ChildGeniusDrawings:
+	.string "The first one's RAYQUAZA, and the\n"
+	.string "second one's JIRACHI.\p"
+	.string "Legend has it that JIRACHI comes down\n"
+	.string "from space sometimes to grant\l"
+	.string "people's wishes.\p"
+	.string "Maybe it could tell us about space!$"
+
+RustboroCity_PokemonSchool_Text_PokemontCantUseManMadeItems:
+	.string "… I fell asleep when she started\n"
+	.string "talking about Newton's Second Law.\p"
+	.string "Then when I woke up, she was talking about\n"
+	.string "equations that prove wormholes are possible.\p"
+	.string "I'm really scared about the test…$"
+
+RustboroCity_PokemonSchool_Text_Draconids:
+	.string "Legend says that there were an ancient\n"
+	.string "people in HOENN called the DRACONIDS.\p"
+	.string "They worshipped a POKéMON from outer\n"
+	.string "space called RAYQUAZA.\p"
+	.string "But we can't really test if that's true,\n"
+	.string "since we can't go into space ourselves.$"
 
 RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry:
-	.string "A POKéMON holding a BERRY will heal\n"
-	.string "itself…\p"
-	.string "There are many kinds of items that\n"
-	.string "POKéMON can hold…\p"
-	.string "Boy, it sure is hard taking notes\n"
-	.string "down…$"
+	.string "Our regular teacher's sick, so they\n"
+	.string "hired a substitute.\p"
+	.string "She's teaching us stuff that's\n"
+	.string "ten times harder!$"
 
 RustboroCity_PokemonSchool_Text_StudentsNotes:
 	.string "It's this student's notebook…\p"
-	.string "POKéMON are to be caught using\n"
-	.string "POKé BALLS.\p"
-	.string "Up to six POKéMON can accompany\n"
-	.string "a TRAINER.\p"
-	.string "A TRAINER is someone who catches\n"
-	.string "POKéMON, raises them, and battles\l"
-	.string "with them.\p"
-	.string "A TRAINER's mission is to defeat\n"
-	.string "the strong TRAINERS who await\l"
-	.string "challengers in POKéMON GYMS.$"
+	.string "“The study of outer space has rapidly\n"
+	.string "advanced thanks to modern telescopes.\p"
+	.string "However, travelling to space still\n"
+	.string "remains an elusive dream.\p"
+	.string "Recently, it was mathematically\n"
+	.string "proven that building a rocket\l"
+	.string "that could escape Earth's gravity\l"
+	.string "is possible.\p"
+	.string "Now we prove the classical rocket\n"
+	.string "equation as a small exercise…”$"
+
+RustboroCity_PokemonSchool_Text_UltraWormholes:
+	.string "Apparently, scientists have been\n"
+	.string "seing weird flares in the night sky.\p"
+	.string "Our sub's saying that they're actually\n"
+	.string "warps into parallel worlds.\p"
+	.string "I wish I could warp myself some food…$"
+
+RustboroCity_PokemonSchool_Text_ItsTooHard:
+	.string "I don't get it! It's too hard!$"
 
 RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut:
 	.string "Hello? Didn't we meet before?\n"

@@ -73,9 +73,16 @@ RustboroCity_House1_Text_AnyPokemonCanBeCute:
 	.string "Any POKéMON can be cute if you raise\n"
 	.string "it with care and kindness.$"
 
-RustboroCity_House1_Text_AllSortsOfPlaces:
+RustboroCity_House1_Text_AllSortsOfPlaces2:
 	.string "In all sorts of places, there are all\n"
 	.string "sorts of POKéMON and people.\p"
 	.string "I find that fascinating, so I go to all\n"
 	.string "sorts of places.$"
+
+RustboroCity_House1_Text_AllSortsOfPlaces:
+	.string "Sigh…\p"
+	.string "I have a well-paying job, we have a\n"
+	.string "great house, and a garden in the middle\l"
+	.string "of the city.\p"
+	.string "So what's missing…?$"
 

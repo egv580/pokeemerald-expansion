@@ -318,6 +318,11 @@ bool8 ScrCmd_loadword(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_startdevonbattle(struct ScriptContext *ctx)
+{
+    return FALSE;
+}
+
 bool8 ScrCmd_loadbytefromptr(struct ScriptContext *ctx)
 {
     u8 index = ScriptReadByte(ctx);
