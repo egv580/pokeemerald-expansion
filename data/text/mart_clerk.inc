@@ -2,6 +2,11 @@ gText_HowMayIServeYou::
 	.string "Welcome!\p"
 	.string "How may I serve you?$"
 
+gText_Luxury_HowMayIServeYou::
+	.string "Welcome to the Luxury Mart, traders\n"
+	.string "of fine goods!\p"
+	.string "How may I serve you?$"
+
 gText_PleaseComeAgain::
 	.string "Please come again!$"
 

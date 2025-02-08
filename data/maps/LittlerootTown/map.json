@@ -2,7 +2,7 @@
   "id": "MAP_LITTLEROOT_TOWN",
   "name": "LittlerootTown",
   "layout": "LAYOUT_LITTLEROOT_TOWN",
-  "music": "MUS_LILYCOVE",
+  "music": "MUS_LITTLEROOT",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -135,19 +135,6 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LittlerootTown_EventScript_Devon_Ask",
-      "flag": "FLAG_UNUSED_0x265"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_JUAN",
-      "x": 6,
-      "y": 2,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
-      "movement_range_x": 3,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_EventScript_Duke",
       "flag": "0"
     },
     {
@@ -156,7 +143,7 @@
       "y": 13,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 1,
+      "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
@@ -165,20 +152,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
-      "x": 17,
-      "y": 14,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
-      "x": 17,
+      "x": 18,
       "y": 14,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
@@ -191,7 +165,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
-      "x": 19,
+      "x": 17,
       "y": 14,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
@@ -204,7 +178,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
-      "x": 18,
+      "x": 19,
       "y": 14,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
@@ -212,21 +186,21 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_EventScript_Vulpix",
+      "script": "NULL",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_STEVEN",
-      "x": 11,
-      "y": 16,
+      "graphics_id": "OBJ_EVENT_GFX_JUAN",
+      "x": 5,
+      "y": 2,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FOLLOW_PLAYER",
-      "movement_range_x": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 2,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_EventScript_Devon_Follow",
-      "flag": "FLAG_UNUSED_0x264"
+      "script": "LittlerootTown_Battle_Duke",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -252,18 +226,11 @@
       "dest_warp_id": "0"
     },
     {
-      "x": 16,
-      "y": 16,
-      "elevation": 0,
-      "dest_map": "MAP_EVER_GRANDE_CITY",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 6,
+      "x": 12,
       "y": 18,
       "elevation": 0,
-      "dest_map": "MAP_UNKNOWN",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_EVER_GRANDE_CITY_PALACE_HALLWAY",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [

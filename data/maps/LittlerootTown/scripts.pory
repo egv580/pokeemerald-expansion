@@ -42,7 +42,6 @@ LittlerootTown_MapScripts::
 
 LittlerootTown_OnTransition:
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
-	setflag FLAG_UNUSED_0x264
 	call Common_EventScript_SetupRivalGfxId
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_MoveMomToMaysDoor
 	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
@@ -53,7 +52,6 @@ LittlerootTown_OnTransition:
 	call_if_eq VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_EventScript_SetRivalLeftForRoute103
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_HideMapNamePopup
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_EventScript_LeftLabAfterDexUpgrade
-	call_if_unset FLAG_UNUSED_0x264, LittlerootTown_EventScript_Devon_Follow
 	end
 
 LittlerootTown_EventScript_LeftLabAfterDexUpgrade::
@@ -1023,22 +1021,16 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "Let's go to my LAB.$"
 `
 
-#movement DevonFollow {
-#    MOVEMENT_TYPE_FOLLOW_PLAYER
-#}
-
 script LittlerootTown_EventScript_Devon_Ask {
 	lockall
 	faceplayer
 	playbgm(MUS_ENCOUNTER_CHAMPION, FALSE)
-	msgbox("It's great to see you!")
-	msgbox("Walk with him?", MSGBOX_YESNO)
+	msgbox("STEVEN: It's great to see you!", type=MSGBOX_NPC)
+	lockall
+	msgbox("Walk with him?", type=MSGBOX_YESNO)
 	if(var(VAR_RESULT) == YES){
 		msgbox("Great! Let's go!")
-		#setobjectmovementtype(9, MovementType_FollowPlayer)
-		#applymovement(9, FollowPlayer)
-		clearflag(FLAG_UNUSED_0x264)
-		clearflag(FLAG_UNUSED_0x265)
+		setfollower(9, FOLLOWER_FLAG_CAN_LEAVE_ROUTE, Devon_Follow_Dialogue, TRUE)
 		}
     else{
 		msgbox(":(")
@@ -1048,11 +1040,16 @@ script LittlerootTown_EventScript_Devon_Ask {
 	end
 }
 
-script LittlerootTown_EventScript_Devon_Follow {
+script Devon_Follow_Dialogue{
 	lockall
-	faceplayer
+	facefollower
+	msgbox(Devon_Follow_Text, type=MSGBOX_NPC)
 	releaseall
 	end
+}
+
+text Devon_Follow_Text {
+	format("DEVON: BELDUM and I met when I was exploring a cave one day. I was supposed to be bringing back mineral samples, but I ended up meeting a POKeMON.")
 }
 
 script LittlerootTown_EventScript_Father {
@@ -1069,19 +1066,19 @@ script LittlerootTown_EventScript_Vulpix{
     showmonpic(SPECIES_VULPIX, 10,3)
     msgbox("Do you want to choose Vulpix?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES){
-        givemon(SPECIES_VULPIX, 50, ITEM_MASTER_BALL)
+        givemon(SPECIES_VULPIX, 5, ITEM_MASTER_BALL, isShiny=TRUE, nature=NATURE_TIMID, speedEv=252, spAtkEv=252, spDefEv=4, spAtkIv=31, speedIv=31)
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Vulpix!")
             removeobject(1)
-            setflag(FLAG_UNUSED_0x020)
+            setflag(FLAG_UNUSED_0x470)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Vulpix!")
             removeobject(1)
-            setflag(FLAG_UNUSED_0x020)
+            setflag(FLAG_UNUSED_0x470)
             call(NicknameBoxMon)
         }
         else{
@@ -1104,19 +1101,19 @@ script LittlerootTown_EventScript_Swablu{
     showmonpic(SPECIES_SWABLU, 10,3)
     msgbox("Do you want to choose Swablu?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES){
-        givemon(SPECIES_SWABLU, 50, ITEM_MASTER_BALL)
+        givemon(SPECIES_SWABLU, 5, ITEM_MASTER_BALL, isShiny=TRUE, nature=NATURE_ADAMANT, atkEv=252, spDefEv=4, speedEv=252, atkIv=31, speedIv=31)
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Swablu!")
             removeobject(1)
-            setflag(FLAG_UNUSED_0x020)
+            setflag(FLAG_UNUSED_0x470)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Swablu!")
             removeobject(1)
-            setflag(FLAG_UNUSED_0x020)
+            setflag(FLAG_UNUSED_0x470)
             call(NicknameBoxMon)
         }
         else{
@@ -1165,16 +1162,29 @@ script LittlerootTown_EventScript_Duke {
 }
 
 text LittlerootTown_Text_Duke {
-	format("DUKE: Forgive my son. You probably don't remember me - the last time we talked, you were a small child! \n I'm the DUKE of EVER GRANDE. I'm one of your FATHER's vassals. In other words, we're practically family!")
+	format("DUKE: Forgive my son. You probably don't remember me - the last time we talked, you were a small child! I'm the DUKE of EVER GRANDE. I'm one of your FATHER's vassals. In other words, we're practically family!")
 }
-#    "DUKE: Forgive my son.\n"
-#    "You probably don't remember me - the last \n"
-#	"time we talked, you were a small child!\n"
-#	"I'm the DUKE of EVER GRANDE. I'm one of \n"
-#	"your FATHER's vassals.\n"
-#	"In other words, we're practically family! \n"
-#	"As for CLYDE, it's time he gets a look around \n"
-#	"the palace and meets everyone formally.\n"
-#	"He's coming of age too in a couple months."
-#
-#}
+
+script LittlerootTown_Battle_Duke {
+	lockall
+	faceplayer
+	choose_mons
+	#trainerbattle_double(trainer=TRAINER_JUAN_2, intro_text=Text_Challenge_Duke, lose_text=DukeLoseText, not_enough_pkmn_text=DukeLoseText)
+	multi_2_vs_1(TRAINER_JUAN_2, DukeLoseText, PARTNER_STEVEN)
+	releaseall
+	#switch VAR_RESULT
+	#case 1, EventScript_Defeated_Duke
+	#fadescreen FADE_TO_BLACK
+	#special SetCB2WhiteOut
+	#waitstate
+}
+
+text Text_Challenge_Duke {
+	format("Behold!")
+}
+
+
+# This plays in the text box right before you get the prize money
+text DukeLoseText {
+	format("Nooo! How was I defeated? By some penniless rock collector and a spoiled heir?!")
+}

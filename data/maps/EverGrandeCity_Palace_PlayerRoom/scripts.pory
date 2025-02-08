@@ -1,0 +1,274 @@
+raw `
+.set LOCALID_FATHER, 5
+
+EverGrandeCity_Palace_PlayerRoom_MapScripts::
+    map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_PlayerRoom_OnFrame
+	.byte 0
+
+EverGrandeCity_PlayerRoom_OnFrame:
+    map_script_2 VAR_EVERGRANDE_INTRO_STATE, 0, EverGrandeCity_Palace_PlayerRoom_Script_Maid1_Tea
+	.2byte 0
+
+`
+
+script EverGrandeCity_Palace_PlayerRoom_Script_Maid1_Tea {
+    lockall
+    setflag(FLAG_HIDE_APPRENTICE)
+    delay(30)
+    applymovement(OBJ_EVENT_ID_PLAYER, EverGrandeCity_Intro_Player_FaceTable)
+    waitmovement(0)
+    delay(10)
+    applymovement(3, EverGrandeCity_Intro_Maid_Tea_Movement)
+    waitmovement(3)
+    msgbox(EverGrandeCity_Palace_PlayerRoom_Maid1_Intro_1, type=MSGBOX_DEFAULT)
+    setvar(VAR_EVERGRANDE_INTRO_STATE, 1)
+    releaseall
+}
+
+script EverGrandeCity_Palace_PlayerRoom_TalkTo_Maid1 {
+    switch (var(VAR_EVERGRANDE_INTRO_STATE)) {
+        case 1:
+        case 2:
+            msgbox("Have a wonderful day, PRINCESS!", type=MSGBOX_NPC)
+            break
+        default:
+            msgbox(EverGrandeCity_Palace_PlayerRoom_Maid1_Text, type=MSGBOX_NPC)
+    }
+}
+
+script EverGrandeCity_Palace_PlayerRoom_TalkTo_Maid2 {
+    msgbox(EverGrandeCity_Palace_PlayerRoom_Maid2_Text, type=MSGBOX_NPC)
+}
+
+script EverGrandeCity_Palace_PlayerRoom_TalkTo_Maid3 {
+    lockall
+    msgbox("Beautifully-decorated surroundings bring out the beauty of the soul.", type=MSGBOX_NPC)
+    releaseall
+}
+
+script EverGrandeCity_Palace_PlayerRoom_CheckDesk {
+    lockall
+    switch (var(VAR_EVERGRANDE_INTRO_STATE)) {
+        case 2:
+            msgbox(EverGrandeCity_Palace_PlayerRoom_CheckDesk1, MSGBOX_AUTOCLOSE)
+	        setflag(FLAG_SYS_POKENAV_GET)
+            setflag(FLAG_SYS_POKEDEX_GET)
+            setflag(FLAG_RECEIVED_POKENAV)
+            setflag(FLAG_ADDED_MATCH_CALL_TO_POKENAV)
+            register_matchcall(TRAINER_WALLACE)
+            special(SetUnlockedPokedexFlags)
+            setvar(VAR_EVERGRANDE_INTRO_STATE, 3)
+            break
+        default:
+            msgbox(EverGrandeCity_Palace_PlayerRoom_CheckDeskDefault, MSGBOX_AUTOCLOSE)
+    }
+    releaseall
+}
+
+script EverGrandeCity_Palace_PlayerRoom_FatherGiveEmerald {
+    lockall
+    faceplayer
+    msgbox("FATHER: Here is the EMERALD, my dear!", type=MSGBOX_NPC)
+    waitmessage
+    giveitem(ITEM_EMERALD, 1)
+    waitmessage
+    msgbox("FATHER: And here is the GOLDEN REPEL!", type=MSGBOX_NPC)
+    giveitem(ITEM_GOLDEN_REPEL, 1)
+    msgbox("FATHER: And here is the FAKE EMERALD!", type=MSGBOX_NPC)
+    giveitem(ITEM_FAKE_EMERALD, 1)
+    msgbox("FATHER: And here is the FLOATY BALLOON!", type=MSGBOX_NPC)
+    giveitem(ITEM_FLOATY_BALLOON, 1)
+    waitmessage
+    releaseall
+}
+
+script EverGrandeCity_Palace_PlayerRoom_FatherEnters_1 {
+    lockall
+    playse(SE_EXIT)
+    addobject(LOCALID_FATHER)
+    clearflag(FLAG_HIDE_PLAYERROOM_FATHER)
+    waitse
+    delay(10)
+    applymovement(LOCALID_FATHER, EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_1)
+    setvar(VAR_EVERGRANDE_INTRO_STATE, 2)
+    waitmovement(LOCALID_FATHER)
+    msgbox(EverGrandeCity_Palace_PlayerRoom_Father_GoodMorning, type=MSGBOX_NPC)
+    waitmessage
+    applymovement(LOCALID_FATHER, EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_1_Reverse)
+    waitmovement(LOCALID_FATHER)
+    delay(10)
+    playse(SE_EXIT)
+    removeobject(LOCALID_FATHER)
+    setflag(FLAG_HIDE_PLAYERROOM_FATHER)
+    releaseall
+}
+
+script EverGrandeCity_Palace_PlayerRoom_FatherEnters_2 {
+    lockall
+    playse(SE_EXIT)
+    addobject(LOCALID_FATHER)
+    clearflag(FLAG_HIDE_PLAYERROOM_FATHER)
+    waitse
+    delay(10)
+    applymovement(LOCALID_FATHER, EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_2)
+    setvar(VAR_EVERGRANDE_INTRO_STATE, 2)
+    waitmovement(LOCALID_FATHER)
+    msgbox(EverGrandeCity_Palace_PlayerRoom_Father_GoodMorning, type=MSGBOX_NPC)
+    waitmessage
+    applymovement(LOCALID_FATHER, EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_2_Reverse)
+    waitmovement(LOCALID_FATHER)
+    delay(10)
+    playse(SE_EXIT)
+    removeobject(LOCALID_FATHER)
+    setflag(FLAG_HIDE_PLAYERROOM_FATHER)
+    releaseall
+}
+
+script EverGrandeCity_Palace_PlayerRoom_FatherEnters_3 {
+    lockall
+    playse(SE_EXIT)
+    addobject(LOCALID_FATHER)
+    clearflag(FLAG_HIDE_PLAYERROOM_FATHER)
+    waitse
+    delay(10)
+    applymovement(LOCALID_FATHER, EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_3)
+    setvar(VAR_EVERGRANDE_INTRO_STATE, 2)
+    waitmovement(LOCALID_FATHER)
+    msgbox(EverGrandeCity_Palace_PlayerRoom_Father_GoodMorning, type=MSGBOX_NPC)
+    waitmessage
+    applymovement(LOCALID_FATHER, EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_3_Reverse)
+    waitmovement(LOCALID_FATHER)
+    delay(10)
+    playse(SE_EXIT)
+    removeobject(LOCALID_FATHER)
+    setflag(FLAG_HIDE_PLAYERROOM_FATHER)
+    releaseall
+}
+
+script EverGrandeCity_Palace_PlayerRoom_FatherEnters_4 {
+    lockall
+    playse(SE_EXIT)
+    addobject(LOCALID_FATHER)
+    clearflag(FLAG_HIDE_PLAYERROOM_FATHER)
+    waitse
+    delay(10)
+    applymovement(LOCALID_FATHER, EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_4)
+    setvar(VAR_EVERGRANDE_INTRO_STATE, 2)
+    waitmovement(LOCALID_FATHER)
+    msgbox(EverGrandeCity_Palace_PlayerRoom_Father_GoodMorning, type=MSGBOX_NPC)
+    waitmessage
+    applymovement(LOCALID_FATHER, EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_4_Reverse)
+    waitmovement(LOCALID_FATHER)
+    delay(10)
+    playse(SE_EXIT)
+    removeobject(LOCALID_FATHER)
+    setflag(FLAG_HIDE_PLAYERROOM_FATHER)
+    releaseall
+}
+
+script EverGrandeCity_Palace_PlayerRoom_MovePlayerBackInside {
+    lockall
+    applymovement(OBJ_EVENT_ID_PLAYER, EverGrandeCity_Palace_PlayerRoom_Movement_GoBackInside)
+    waitmovement(0)
+    msgbox("(I haven't checked my desk yet.)", type=MSGBOX_AUTOCLOSE)
+    releaseall
+}
+
+
+movement EverGrandeCity_Palace_PlayerRoom_Movement_GoBackInside {
+    walk_up
+}
+
+movement EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_1 {
+    walk_up * 3
+    walk_left * 1
+    walk_in_place_up
+}
+
+movement EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_1_Reverse {
+    walk_right * 1
+    walk_down * 3
+}
+
+movement EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_2 {
+    walk_up * 3
+}
+
+movement EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_2_Reverse {
+    walk_down * 3
+}
+
+movement EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_3 {
+    walk_up * 3
+    walk_right * 1
+    walk_in_place_up
+}
+
+movement EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_3_Reverse {
+    walk_left * 1
+    walk_down * 3
+}
+
+movement EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_4 {
+    walk_up * 3
+    walk_right * 2
+    walk_in_place_up
+}
+
+movement EverGrandeCity_Palace_PlayerRoom_Movement_Intro_FatherEnters_4_Reverse {
+    walk_left * 2
+    walk_down * 3
+}
+
+movement EverGrandeCity_Intro_Maid_Tea_Movement {
+    walk_slow_down
+    walk_slow_left * 2
+    face_down
+}
+
+movement EverGrandeCity_Intro_Player_FaceTable {
+    face_right
+}
+
+text EverGrandeCity_Palace_PlayerRoom_Maid1_Intro_1 {
+    format("MAID: Is everything to your liking, {PLAYER}? This tea was imported from Kalos, it's an exquisite blend.\p"
+    "The cake is sublime as well. A brand-new recipe from the chefs.\p"
+    "… … …\p"
+    "Is something troubling you today, {PLAYER}? You seem lost in thought."
+    "… … …\p"
+    "Ah, I understand. Today is your coming-of-age day, after all. It's a big day for anyone. But especially a PRINCESS."
+    "Not to worry, Miss {PLAYER}, everything will go smoothly: The banquet, the gala. And I believe your father has a surprise for you after breakfast."
+    )
+}
+
+text EverGrandeCity_Palace_PlayerRoom_Maid1_Intro_2 {
+    format("… … …\p"
+    "Ah, I believe I understand. Today is your coming-of-age day, after all. It's a big day for anyone. But especially a PRINCESS."
+    "Not to worry, Miss {PLAYER}, everything will go smoothly: The banquet, the gala. And I believe your father has a surprise for you after breakfast."
+    )
+}
+
+text EverGrandeCity_Palace_PlayerRoom_Father_GoodMorning {
+    format("{PLAYER}! My dear daughter. Did you rest well? Are you all set for today?\p"
+    "Ah, I see you are still having tea. Not to worry, I'll be waiting for you outside. Come when you're ready!"
+    )
+}
+
+text EverGrandeCity_Palace_PlayerRoom_Maid1_Text {
+    format("Home is a safe haven from the cruelty and tumult of the world.\p"
+    "You can return here to rest anytime.")
+}
+
+text EverGrandeCity_Palace_PlayerRoom_Maid2_Text {
+    format("A child should not want for anything, not physically or emotionally."
+    "Though you have come of age, you will always be your father's child.")
+}
+
+text EverGrandeCity_Palace_PlayerRoom_CheckDesk1{
+    format("Checked the desk.\p"
+    "Took the COMMONPLACE JOURNAL, as well as the TELEGRAPH BOOK.")
+}
+
+text EverGrandeCity_Palace_PlayerRoom_CheckDeskDefault{
+    format("A beautiful, spacious writing desk.\p")
+}

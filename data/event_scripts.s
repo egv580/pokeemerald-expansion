@@ -29,6 +29,7 @@
 #include "constants/field_tasks.h"
 #include "constants/field_weather.h"
 #include "constants/flags.h"
+#include "constants/follow_me.h"
 #include "constants/frontier_util.h"
 #include "constants/game_stat.h"
 #include "constants/item.h"
@@ -1110,6 +1111,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/contest_strings.inc"
 	.include "data/text/contest_link.inc"
 	.include "data/text/contest_painting.inc"
+	.include "data/text/trick_house_mechadolls.inc"
 	.include "data/scripts/tv.inc"
 	.include "data/text/tv.inc"
 	.include "data/scripts/interview.inc"
@@ -1150,9 +1152,38 @@ EventScript_VsSeekerChargingDone::
 	.include "data/scripts/trainer_hill.inc"
 	.include "data/scripts/test_signpost.inc"
 	.include "data/scripts/follower.inc"
+	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
 
+	.include "data/maps/EverGrandeCity_Palace_PokemonRoom/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_Palace_PlayerRoom/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_Palace_Hallway/scripts.inc"
+
 	.include "data/maps/Unknown/scripts.inc"
 
+	.include "data/maps/Unknown_Tunnel2/scripts.inc"
+
+	.include "data/maps/Unknown_Tunnel_3/scripts.inc"
+
+	.include "data/maps/Meteor_Falls_Secret_Tunnels/scripts.inc"
+
+	.include "data/maps/MeteorFalls_New_Areas/scripts.inc"
+
+	.include "data/maps/MeteorFalls_BeldumCaves_2/scripts.inc"
+
+	.include "data/maps/UltraDesert/scripts.inc"
+
 	.include "data/maps/EverGrande/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_Palace_JirachiShrine/scripts.inc"
+
+	.include "data/maps/UltraDeepSea/scripts.inc"
+
+	.include "data/maps/RustboroPort/scripts.inc"
+
+	.include "data/maps/RustboroCity_LuxuryMart/scripts.inc"
+
+	.include "data/maps/RustboroCity_NewGym/scripts.inc"

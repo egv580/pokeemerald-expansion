@@ -1,0 +1,95 @@
+raw `
+.set LOCALID_DEVON, 11
+
+`
+mapscripts MeteorFalls_New_Areas_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: MeteorFalls_BeldumsCave_OnTransition
+}
+
+# Every time you load into this map, this script will run
+# Setting the HIDE_DEVON_FLAG makes him not load in
+# Clearing the flag makes him appear
+script MeteorFalls_BeldumsCave_OnTransition {
+    call_if_eq(VAR_BELDUMS_CAVE_STATE, 0, MeteorFalls_Beldums_Cave_EventScript_FirstVisit_WithDevon)
+}
+
+script MeteorFalls_Beldums_Cave_EventScript_Beldum {
+    lockall
+    faceplayer
+    playmoncry(SPECIES_BELDUM, CRY_MODE_NORMAL)
+    msgbox("BELDUM: Bel bel!", type=MSGBOX_NPC)
+    waitmoncry
+    closemessage
+    releaseall
+}
+
+
+# 1) Destroy prev follower and activate the trigger tiles
+script MeteorFalls_Beldums_Cave_EventScript_FirstVisit_WithDevon {
+    setvar(VAR_BELDUMS_CAVE_STATE, 1)
+}
+
+#script MeteorFalls_Beldums_Cave_EventScript_Devon {
+#    call_if_eq(VAR_BELDUMS_CAVE_STATE, 1, MeteorFalls_StevensCave_EventScript_Devon_Story)
+#    call_if_eq(VAR_UNUSED_0x408B, 1, MeteorFalls_StevensCave_EventScript_Devon_NoticedPlayer)
+#}
+
+# 2) Step on the trigger tiles and make new Devon appear
+//script MeteorFalls_Beldums_Cave_EventScript_Show_Devon{
+//    lockall
+//    clearflag(FLAG_HIDE_BELDUM_CAVE_DEVON)
+//    setvar(VAR_BELDUMS_CAVE_STATE, 2)
+//    releaseall
+//}
+
+# 3) Should execute Devon's actions...
+script MeteorFalls_Beldums_Cave_EventScript_Devon {
+    call_if_eq(VAR_BELDUMS_CAVE_STATE, 3, MeteorFalls_Beldums_Cave_EventScript_Devon_Story)
+}
+
+script MeteorFalls_Beldums_Cave_EventScript_Devon_Story {
+    lockall
+    playse(SE_PIN)
+	applymovement(localId=OBJ_EVENT_ID_FOLLOW_ME, movements=Common_Movement_ExclamationMark)
+    waitse
+    applymovement(localId=OBJ_EVENT_ID_FOLLOW_ME, movements=MeteorFallsNewAreas_DevonLooksAround)
+    msgbox(MeteorFalls_Beldums_Cave_Devon_Story_Text_1, type=MSGBOX_NPC)
+    facefollower
+    msgbox(MeteorFalls_Beldums_Cave_Devon_Story_Text_2, type=MSGBOX_NPC)
+    setvar(VAR_BELDUMS_CAVE_STATE, 4)
+}
+
+movement MeteorFallsNewAreas_DevonLooksAround {
+    walk_in_place_down
+    walk_in_place_left
+    walk_in_place_right
+}
+
+text MeteorFalls_Beldums_Cave_Devon_Story_Text_1 {
+    format("DEVON: !!!\p"
+           "This place...\p")
+}
+
+text MeteorFalls_Beldums_Cave_Devon_Story_Text_2 {
+    format("This must be one of BELDUM's habitats. I've never seen them out in the open like this... They're usually very shy."
+           "From what I've seen, the only fighting move BELDUM knows is Take Down, where it takes recoil damage."
+           "So, in a way, BELDUM can't fight without hurting itself."
+           )
+}
+
+text MeteorFalls_Beldums_Cave_Devon_Unusual{
+    format("… … … … … …\p"
+        "I probably sound strange talking about POKeMON so much, don't I?")
+}
+
+text MeteorFalls_Beldums_Cave_Devon_Unusual2{
+    format("… … … … … …\p"
+        "I probably sound strange talking about POKeMON so much, don't I?\p"
+        "I guess BELDUM is the one that made me like this..."
+        "It would take the rocks I shoveled every day and treat each one like it was something special and valuable."
+        "And over time I started seeing the beauty in them, too."
+        "How did you meet your SWABLU?"
+        "… … … … … …\p"
+        "I see... it was a gift from your father. It must be very special to you, then. But you seem to have a strong bond, despite not being together for very long."
+    )
+}

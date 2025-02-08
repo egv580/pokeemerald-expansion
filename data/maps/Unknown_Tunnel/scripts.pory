@@ -1,0 +1,101 @@
+raw `
+Unknown_Tunnel_MapScripts::
+	.byte 0
+`
+
+script Unknown_Tunnel_TruckDriver {
+    //lockall    
+    //playse(SE_PIN)
+	//applymovement(localId=3, movements=Common_Movement_ExclamationMark)
+    trainerbattle_single(trainer=TRAINER_GRUNT_AQUA_HIDEOUT_1, intro_text=Unknown_Tunnel_TruckDriverIntroText, lose_text=Unknown_Tunnel_TruckDriverLoseText)
+    msgbox(Unknown_Tunnel_TruckDriverAfterDefeat, MSGBOX_AUTOCLOSE)
+}
+
+script Unknown_Tunnel_Goon2 {
+    trainerbattle_single(trainer=TRAINER_GRUNT_AQUA_HIDEOUT_2, intro_text=Unknown_Tunnel_Goon1IntroText, lose_text=Unknown_Tunnel_Goon1LoseText)
+    msgbox(Unknown_Tunnel_Goon1AfterDefeat, MSGBOX_AUTOCLOSE)
+}
+
+script UnknownTunnel_ItemBallPotion1 {
+    lockall
+    removeobject(2)
+    giveitem(ITEM_FLOATY_BALLOON, 1)
+    setflag(FLAG_GET_FLOATYBALLOON)
+    releaseall
+}
+
+script UnknownTunnel_ItemBallGoldenRepel {
+    lockall
+    giveitem(ITEM_GOLDEN_REPEL, 1)
+    removeobject(8)
+    releaseall
+}
+
+script UnknownTunnel_ItemBallElixir {
+    lockall
+    giveitem(ITEM_ELIXIR, 1)
+    removeobject(6)
+    releaseall
+}
+
+script UnknownTunnel_ItemBallAntidote {
+    lockall
+    giveitem(ITEM_ANTIDOTE, 1)
+    removeobject(7)
+    releaseall
+}
+
+script UnknownTunnel_Sign1Read{
+    lockall
+    msgbox(Unknown_Tunnel_Sign1Text, MSGBOX_DEFAULT)
+    releaseall
+}
+
+script UnknownTunnel_Sign2Read{
+    lockall
+    msgbox(Unknown_Tunnel_Sign2Text, MSGBOX_DEFAULT)
+    releaseall
+}
+
+text Unknown_Tunnel_TruckDriverIntroText {
+    format("Argh... I hate my job!\p" 
+    "There I was, a happy drill mechanic in FIERY PATH." 
+    "Now I have to drive this beat-up truck halfway across Hoenn!\p"
+    "… … … … … …\p"
+    "Hey, wait a minute! You're supposed to be in the truck!")
+}
+
+text Unknown_Tunnel_TruckDriverLoseText {
+    format("… You weren't supposed to get past me!")
+}
+
+text Unknown_Tunnel_TruckDriverAfterDefeat {
+    format("Blast it all...\n" 
+    "No one told me you'd have a POKeMON with you!\p" 
+    "They said it would be a quick job... I was supposed to drop you off in PETALBURG CITY, then come right back like nothing happened. The branch leader will be furious with me... I don't care anymore, I'm scramming!"
+    )
+}
+
+text Unknown_Tunnel_Goon1IntroText {
+    format("Hold it right there!\p" 
+    "You must be the special passenger we're transporting. Sorry, but we don't allow rest stops!")
+}
+
+text Unknown_Tunnel_Goon1LoseText {
+    format("What…?")
+}
+
+text Unknown_Tunnel_Goon1AfterDefeat {
+    format("You defeated the driver too?\n" 
+    "This is bad... I gotta tell the BOSS!")
+}
+
+text Unknown_Tunnel_Sign1Text {
+    format("Tunnel to Rustboro City.\p"
+    "Unauthorized access prohibited!")
+}
+
+text Unknown_Tunnel_Sign2Text {
+    format("NOTICE: Proper equipment must be\p"
+    "worn at all times!")
+}

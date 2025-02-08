@@ -53,8 +53,8 @@ gFieldEffectScriptPointers::
 	.4byte gFieldEffectScript_UseDive                   @ FLDEFF_USE_DIVE
 	.4byte gFieldEffectScript_PokeballTrail             @ FLDEFF_POKEBALL_TRAIL
 	.4byte gFieldEffectScript_HeartIcon                 @ FLDEFF_HEART_ICON
-	.4byte gFieldEffectScript_Nop47                     @ FLDEFF_NOP_47
-	.4byte gFieldEffectScript_Nop48                     @ FLDEFF_NOP_48
+	.4byte gFieldEffectScript_BeldumUseRockSmash        @ FLDEFF_BELDUM_USE_ROCK_SMASH
+	.4byte gFieldEffectScript_FieldMoveShowBeldum       @ FLDEFF_FIELD_MOVE_SHOW_BELDUM
 	.4byte gFieldEffectScript_AshPuff                   @ FLDEFF_ASH_PUFF
 	.4byte gFieldEffectScript_AshLaunch                 @ FLDEFF_ASH_LAUNCH
 	.4byte gFieldEffectScript_SweetScent                @ FLDEFF_SWEET_SCENT
@@ -79,6 +79,8 @@ gFieldEffectScriptPointers::
 	.4byte gFieldEffectScript_TracksSlither             @ FLDEFF_TRACKS_SLITHER
 	.4byte gFieldEffectScript_TracksBug                 @ FLDEFF_TRACKS_BUG
 	.4byte gFieldEffectScript_TracksSpot                @ FLDEFF_TRACKS_SPOT
+	.4byte gFieldEffectScript_FieldMoveShowBeldumInit   @ FLDEFF_FIELD_MOVE_SHOW_BELDUM_INIT
+	.4byte gFieldEffectScript_SurfWithBalloon           @ FLDEFF_SURF_WITH_BALLOON
 
 gFieldEffectScript_ExclamationMarkIcon1::
 	field_eff_callnative FldEff_ExclamationMarkIcon
@@ -108,6 +110,10 @@ gFieldEffectScript_FieldMoveShowMon::
 	field_eff_callnative FldEff_FieldMoveShowMon
 	field_eff_end
 
+gFieldEffectScript_FieldMoveShowBeldum::
+	field_eff_callnative FldEff_FieldMoveShowBeldum
+	field_eff_end
+
 gFieldEffectScript_Ash::
 	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect1, FldEff_Ash
 	field_eff_end
@@ -118,6 +124,10 @@ gFieldEffectScript_SurfBlob::
 
 gFieldEffectScript_UseSurf::
 	field_eff_callnative FldEff_UseSurf
+	field_eff_end
+
+gFieldEffectScript_SurfWithBalloon::
+	field_eff_callnative FldEff_SurfWithBalloon
 	field_eff_end
 
 gFieldEffectScript_GroundImpactDust::
@@ -233,6 +243,10 @@ gFieldEffectScript_UseRockSmash::
 	field_eff_callnative FldEff_UseRockSmash
 	field_eff_end
 
+gFieldEffectScript_BeldumUseRockSmash::
+	field_eff_callnative FldEff_BeldumUseRockSmash
+	field_eff_end
+	
 gFieldEffectScript_UseStrength::
 	field_eff_callnative FldEff_UseStrength
 	field_eff_end
@@ -268,14 +282,6 @@ gFieldEffectScript_PokeballTrail::
 
 gFieldEffectScript_HeartIcon::
 	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_HeartIcon
-	field_eff_end
-
-gFieldEffectScript_Nop47::
-	field_eff_callnative FldEff_Nop47
-	field_eff_end
-
-gFieldEffectScript_Nop48::
-	field_eff_callnative FldEff_Nop48
 	field_eff_end
 
 gFieldEffectScript_AshPuff::
@@ -320,6 +326,10 @@ gFieldEffectScript_ShowCutGrass::
 
 gFieldEffectScript_FieldMoveShowMonInit::
 	field_eff_callnative FldEff_FieldMoveShowMonInit
+	field_eff_end
+
+gFieldEffectScript_FieldMoveShowBeldumInit::
+	field_eff_callnative FldEff_FieldMoveShowBeldumInit
 	field_eff_end
 
 gFieldEffectScript_UsePuzzleEffect::

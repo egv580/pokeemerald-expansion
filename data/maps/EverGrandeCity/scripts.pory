@@ -1,0 +1,281 @@
+raw `
+.set LOCALID_CLYDE, 8
+.set LOCALID_DUKE, 30
+
+EverGrandeCity_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_OnTransition
+	.byte 0
+
+EverGrandeCity_OnTransition:
+	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
+	end
+
+EverGrandeCity_EventScript_VictoryRoadSign::
+	msgbox EverGrandeCity_Text_EnteringVictoryRoad, MSGBOX_SIGN
+	end
+
+EverGrandeCity_EventScript_CitySign::
+	msgbox EverGrandeCity_Text_CitySign, MSGBOX_SIGN
+	end
+
+EverGrandeCity_EventScript_PokemonLeagueSign::
+	msgbox EverGrandeCity_Text_EnteringPokemonLeague, MSGBOX_SIGN
+	end
+
+EverGrandeCity_EventScript_SetVisitedEverGrande::
+	setflag FLAG_VISITED_EVER_GRANDE_CITY
+	setvar VAR_TEMP_1, 1
+	end
+
+EverGrandeCity_Text_EnteringVictoryRoad:
+	.string "ENTERING VICTORY ROAD$"
+
+EverGrandeCity_Text_EnteringPokemonLeague:
+	.string "ENTERING POKéMON LEAGUE\n"
+	.string "CENTER GATE$"
+
+EverGrandeCity_Text_CitySign:
+	.string "EVER GRANDE CITY\p"
+	.string "“The paradise of flowers, the sea,\n"
+	.string "and POKéMON.”$"
+
+EverGrandeCity_BerryLadyText:
+	.string "I'm a ROYAL GARDENER.\p"
+	.string "These berries are becoming endangered\n" 
+    .string "on the mainland due to harsh industrial\n"
+    .string "practices.\p"
+	.string "But the climate here is just right\n"
+    .string "for them to thrive!$"
+
+`
+
+script EverGrandeCity_Read_ParkSign {
+    lockall
+    msgbox(EverGrandeCity_ParkSign, type=MSGBOX_SIGN)
+    releaseall
+}
+
+script EverGrandeCity_Read_HouseSign {
+    lockall
+    msgbox(EverGrandeCity_HouseSign, type=MSGBOX_SIGN)
+    releaseall
+}
+
+script EverGrandeCity_Make_Devon_Wait {
+    lockall
+    msgbox(EverGrandeCity_Make_Devon_Wait_Text, type=MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        msgbox("Ok, I'll wait for you.", type=MSGBOX_NPC)
+        destroyfollower
+    }
+    else{
+		msgbox("Ok, let's keep going.", type=MSGBOX_NPC)
+    }
+    releaseall
+}
+
+text EverGrandeCity_Make_Devon_Wait_Text {
+    format("Should I wait for you here?")
+}
+
+text EverGrandeCity_ParkSign {
+    format("PALACE GARDENS")
+}
+
+text EverGrandeCity_HouseSign {
+    format("To Devon's Cave")
+}
+
+
+script EverGrandeCity_TalkTo_ParkGirl {
+    lockall
+    faceplayer
+    msgbox(EverGrandeCity_ParkGirl_1, type=MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        msgbox(EverGrandeCity_ParkGirl_Yes, type=MSGBOX_NPC)
+    }
+    else{
+		msgbox(EverGrandeCity_ParkGirl_No, type=MSGBOX_NPC)
+    }
+    releaseall
+}
+
+script EverGrandeCity_Script_Zigzagoon {
+    lockall
+    faceplayer
+    playmoncry(SPECIES_ZIGZAGOON, CRY_MODE_NORMAL)
+    msgbox(EverGrandeCity_Zigzagoon, type=MSGBOX_NPC)
+	waitmoncry
+	closemessage
+    releaseall
+}
+
+script EverGrandeCity_Script_Wingull {
+    lockall
+    playmoncry(SPECIES_WINGULL, CRY_MODE_NORMAL)
+    msgbox(EverGrandeCity_Wingull, type=MSGBOX_NPC)
+    waitmoncry
+    closemessage
+    releaseall
+}
+
+script EverGrandeCity_Script_CliffMan {
+    lockall
+    msgbox(EverGrandeCity_CliffMan1, type=MSGBOX_NPC)
+    releaseall
+}
+
+script EverGrandeCity_TechMan {
+    lockall
+    msgbox(EverGrandeCity_TechMan_Text, type=MSGBOX_NPC)
+    releaseall
+}
+
+script EverGrandeCity_Script_CityCenterKid {
+    lockall
+    msgbox(EverGrandeCity_Text_CityCenterKid, type=MSGBOX_NPC)
+    releaseall
+}
+
+script EverGrandeCity_Script_CityCenterGentleman {
+    lockall
+    msgbox(EverGrandeCity_Text_CityCenterGentleman, type=MSGBOX_NPC)
+    releaseall
+}
+
+script EverGrandeCity_Script_PastCityCenterGirl {
+    lockall
+    msgbox(EverGrandeCity_Text_PastCityCenterGirl, type=MSGBOX_NPC)
+    releaseall
+}
+
+script EverGrandeCity_Script_BridgeLady {
+    lockall
+    msgbox(EverGrandeCity_Text_BridgeLady, type=MSGBOX_NPC)
+    releaseall
+}
+
+script EverGrandeCity_BerryLadyScript {
+    lockall
+    faceplayer
+    msgbox(EverGrandeCity_BerryLadyText, MSGBOX_NPC)
+    releaseall
+}
+
+script EverGrandeCity_Clyde_Garden {
+    lockall
+    faceplayer
+    msgbox(EverGrandeCity_Text_Clyde_Garden, type=MSGBOX_NPC)
+    msgbox("Challenge this guy?", type=MSGBOX_YESNO)
+	if(var(VAR_RESULT) == YES){
+        trainerbattle_single(trainer=TRAINER_WINSTON_1, intro_text=EverGrandeCity_Text_Clyde_AcceptChallenge, lose_text=ClydeLoseText1)
+        applymovement(LOCALID_CLYDE, ClydeLoseStepBack)
+        msgbox(Clyde_Postbattle_Outro_Text, type=MSGBOX_AUTOCLOSE)
+
+		}
+    else{
+		msgbox(EverGrandeCity_Text_Clyde_DontChallenge, MSGBOX_DEFAULT)
+        applymovement(LOCALID_CLYDE, EverGrandeCity_Clyde_DontChallenge_Movement)
+    }
+    releaseall
+    end
+}
+
+script EverGrandeCity_Clyde_DontChallenge_Movement {
+    face_up
+}
+
+script EverGrandeCity_Battle_Clyde {
+    trainerbattle_single(trainer=TRAINER_WINSTON_1, intro_text=EverGrandeCity_Text_Clyde_AcceptChallenge, lose_text=ClydeLoseText1)
+}
+
+script Clyde_Postbattle_Outro {
+    applymovement(LOCALID_CLYDE, ClydeLoseStepBack)
+    msgbox(Clyde_Postbattle_Outro_Text, type=MSGBOX_NPC)
+}
+
+movement ClydeLoseStepBack {
+    walk_left
+}
+
+text EverGrandeCity_CliffMan1 {
+    format("Urgh... I just looked down and realized how high up we are. Now I'm getting dizzy...")
+}
+
+text EverGrandeCity_CliffMan2 {
+    format("By the way, is that a cave down there, or is it just me?")
+}
+
+text EverGrandeCity_Text_Clyde_Garden {
+    format("???: Just so you know, I'm only coming to your birthday banquet to be polite.\p" 
+    "Oh, you thought that was impolite of me? Too bad.")
+}
+
+
+text EverGrandeCity_Text_Clyde_DontChallenge {
+    format("???: Yeah, that's what I thought.")
+}
+
+text EverGrandeCity_Text_Clyde_AcceptChallenge {
+    format("???: You're right, I do have a POKeMON of my own.\p"
+    "My family considers battling to be a low-class sport, but they're not here right now.\p"
+    "So bring it!")
+}
+
+text ClydeLoseText1 {
+    format("Wait, you're actually good at this...?")
+}
+
+text EverGrandeCity_Zigzagoon {
+    format("ZIGZAGOON: Baw paw!")
+}
+
+text EverGrandeCity_Wingull {
+    format("WINGULL: Gull gull!")
+}
+
+text EverGrandeCity_ParkGirl_1 {
+    format("Hey, want to hear a secret? I'll tell you if you don't tell anyone else!")
+}
+
+text EverGrandeCity_ParkGirl_No {
+    format("Right... You're the PRINCESS, you're high-profile!")
+}
+
+text EverGrandeCity_ParkGirl_Yes {
+    format("I used to be really afraid of wild POKeMON. And people too, kind of... But after I started battling here with my ZIGZAGOON, I realized how strong I could be. Sometimes it seems like you're up against someone who's a lot scarier and stronger than you, but if you choose to fight back, you might just win!")
+}
+
+text EverGrandeCity_TechMan_Text {
+    format("I must say, the advancements in technology made during this decade are extraordinary!\p"
+    "Just thirty years ago we all relied on WINGULL post, but now thanks to the the electrical telegraph, we can send messages across the continent within minutes!")
+}
+
+text EverGrandeCity_BerryLadyText2 {
+    format("I'm a ROYAL GARDENER.\p"
+           "These berries are becoming endangered on the mainland due to harsh industrial practices." 
+           "But the climate here is just right for them to thrive!")
+}
+
+text EverGrandeCity_Text_CityCenterKid {
+    format("Today I'll go paragliding with my brand-new motorboat! After that I'll go swimming in my brand-new pool.")
+}
+
+text EverGrandeCity_Text_CityCenterGentleman {
+    format("Greetings, PRINCESS! I eagerly await the banquet in your honor this evening!")
+}
+
+text EverGrandeCity_Text_PastCityCenterGirl {
+    format("I can't wait for the banquet tonight! So much good food...")
+}
+
+text EverGrandeCity_Text_BridgeLady {
+    format("A stroll over the sea like this makes one cognizant of how small we are in this vast world.")
+}
+
+text Clyde_Postbattle_Outro_Text {
+    format("???: No... that can't be!\p"
+    "It's just because they got you a good POKeMON.\n"
+    "Obviously, you got an expensive POKeMON for your birthday and it did all the work for you!\p"
+    "You're just spoiled and airheaded!")
+}

@@ -93,8 +93,7 @@
     "Underwater_Route129",
     "Underwater_Route105",
     "Underwater_Route125",
-    "Unknown",
-    "EverGrande"
+    "RustboroPort"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
@@ -209,7 +208,9 @@
     "RustboroCity_Flat2_1F",
     "RustboroCity_Flat2_2F",
     "RustboroCity_Flat2_3F",
-    "RustboroCity_House3"
+    "RustboroCity_House3",
+    "RustboroCity_LuxuryMart",
+    "RustboroCity_NewGym"
   ],
   "gMapGroup_IndoorFortree": [
     "FortreeCity_House1",
@@ -295,7 +296,11 @@
     "EverGrandeCity_HallOfFame",
     "EverGrandeCity_PokemonCenter_1F",
     "EverGrandeCity_PokemonCenter_2F",
-    "EverGrandeCity_PokemonLeague_2F"
+    "EverGrandeCity_PokemonLeague_2F",
+    "EverGrandeCity_Palace_PokemonRoom",
+    "EverGrandeCity_Palace_PlayerRoom",
+    "EverGrandeCity_Palace_Hallway",
+    "EverGrandeCity_Palace_JirachiShrine"
   ],
   "gMapGroup_IndoorRoute104": [
     "Route104_MrBrineysHouse",
@@ -431,7 +436,15 @@
     "TerraCave_Entrance",
     "TerraCave_End",
     "AlteringCave",
-    "MeteorFalls_StevensCave"
+    "MeteorFalls_StevensCave",
+    "Unknown_Tunnel",
+    "Unknown_Tunnel2",
+    "Unknown_Tunnel_3",
+    "Meteor_Falls_Secret_Tunnels",
+    "MeteorFalls_New_Areas",
+    "MeteorFalls_BeldumCaves_2",
+    "UltraDesert",
+    "UltraDeepSea"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",
@@ -606,8 +619,8 @@
     "Route110_TrickHousePuzzle6",
     "Route110_TrickHousePuzzle7",
     "Route110_TrickHousePuzzle8",
-    "Route110_SeasideCyclingRoadSouthEntrance",
-    "Route110_SeasideCyclingRoadNorthEntrance"
+    "Route110_SeasideCyclingRoadNorthEntrance",
+    "Route110_SeasideCyclingRoadSouthEntrance"
   ],
   "gMapGroup_IndoorRoute113": [
     "Route113_GlassWorkshop"

@@ -1,0 +1,44 @@
+raw `
+RustboroCity_LuxuryMart_MapScripts::
+	.byte 0
+
+RustboroCity_LuxuryMart_EventScript_Clerk::
+	lock
+	faceplayer
+	message gText_Luxury_HowMayIServeYou
+	waitmessage
+	goto RustboroCity_LuxuryMart_EventScript_PokemartBasic
+	end
+
+RustboroCity_LuxuryMart_EventScript_PokemartBasic::
+	pokemart RustboroCity_LuxuryMart_Basic
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+RustboroCity_LuxuryMart_Basic:
+	.2byte ITEM_LUXURY_BALL
+	.2byte ITEM_MOOMOO_MILK
+    .2byte ITEM_MAX_ETHER
+	.2byte ITEM_NONE
+	release
+	end
+
+`
+
+script RustboroCity_LuxuryMart_EventScript_Gentleman {
+    msgbox(RustboroCity_LuxuryMart_Text_Gentleman, MSGBOX_NPC)
+}
+
+script RustboroCity_LuxuryMart_EventScript_Man {
+    msgbox(RustboroCity_LuxuryMart_Text_Man, MSGBOX_NPC)
+}
+
+text RustboroCity_LuxuryMart_Text_Gentleman {
+    format("If you ask me, the stuff here is way overpriced.")
+}
+
+text RustboroCity_LuxuryMart_Text_Man {
+    format("This is the only store in HOENN where you can buy Ethers!")
+}
