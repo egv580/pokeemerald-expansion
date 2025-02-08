@@ -1155,33 +1155,16 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/birch_speech.inc"
 
 	.include "data/maps/EverGrandeCity_Palace_PokemonRoom/scripts.inc"
-
 	.include "data/maps/EverGrandeCity_Palace_PlayerRoom/scripts.inc"
-
 	.include "data/maps/EverGrandeCity_Palace_Hallway/scripts.inc"
-
-	.include "data/maps/Unknown/scripts.inc"
-
 	.include "data/maps/Unknown_Tunnel2/scripts.inc"
-
 	.include "data/maps/Unknown_Tunnel_3/scripts.inc"
-
 	.include "data/maps/Meteor_Falls_Secret_Tunnels/scripts.inc"
-
 	.include "data/maps/MeteorFalls_New_Areas/scripts.inc"
-
 	.include "data/maps/MeteorFalls_BeldumCaves_2/scripts.inc"
-
 	.include "data/maps/UltraDesert/scripts.inc"
-
-	.include "data/maps/EverGrande/scripts.inc"
-
 	.include "data/maps/EverGrandeCity_Palace_JirachiShrine/scripts.inc"
-
 	.include "data/maps/UltraDeepSea/scripts.inc"
-
 	.include "data/maps/RustboroPort/scripts.inc"
-
 	.include "data/maps/RustboroCity_LuxuryMart/scripts.inc"
-
 	.include "data/maps/RustboroCity_NewGym/scripts.inc"
