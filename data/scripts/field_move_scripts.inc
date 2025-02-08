@@ -52,10 +52,6 @@ Text_WantToCut:
 Text_MonUsedFieldMove:
 	.string "{STR_VAR_1} used {STR_VAR_2}!$"
 
-Text_BeldumUsedTakeDown:
-	.string "{STR_VAR_1} smashed the rock\n"
-	.string "head-on!$"
-
 Text_CantCut:
 	.string "This tree looks like it can be\n"
 	.string "CUT down!$"
@@ -97,60 +93,6 @@ EventScript_SmashRock:: @ fallthrough
 	waitstate
 	releaseall
 	end
-
-@ Interact with Smashable Rock 1 in Meteor Falls
-EventScript_RockSmash_Beldum1::
-	lockall
-	goto_if_eq VAR_METEOR_FALLS_STATE, 1, EventScript_CantSmashRockBeldum
-	goto_if_eq VAR_METEOR_FALLS_STATE, 2, EventScript_CantSmashRockBeldum
-	goto_if_eq VAR_METEOR_FALLS_STATE, 3, EventScript_CantSmashRockBeldum
-	applymovement OBJ_EVENT_ID_FOLLOW_ME, Common_Movement_WalkInPlaceRight
-	bufferspeciesname STR_VAR_1, SPECIES_BELDUM
-	msgbox Text_BeldumWantToSmash, MSGBOX_NPC
-	playmoncry SPECIES_BELDUM, CRY_MODE_NORMAL
-	waitmoncry
-	msgbox Text_BeldumUsedTakeDown, MSGBOX_DEFAULT
-	closemessage
-	setfieldeffectargument 3, TRUE
-	dofieldeffect FLDEFF_BELDUM_USE_ROCK_SMASH
-	waitstate
-EventScript_SmashRockBeldum1:: @ fallthrough
-	applymovement VAR_LAST_TALKED, Movement_SmashRock
-	waitmovement 0
-	removeobject VAR_LAST_TALKED
-	setflag FLAG_HIDE_METEORFALLS_ROCK1
-	goto EventScript_EndSmash
-	waitstate
-	releaseall
-	end
-
-@ Interact with Smashable Rock 2 in Meteor Falls
-EventScript_RockSmash_Beldum2::
-	lockall
-	goto_if_eq VAR_METEOR_FALLS_STATE, 1, EventScript_CantSmashRockBeldum
-	goto_if_eq VAR_METEOR_FALLS_STATE, 2, EventScript_CantSmashRockBeldum
-	goto_if_eq VAR_METEOR_FALLS_STATE, 3, EventScript_CantSmashRockBeldum
-	applymovement OBJ_EVENT_ID_FOLLOW_ME, Common_Movement_WalkInPlaceRight
-	bufferspeciesname STR_VAR_1, SPECIES_BELDUM
-	msgbox Text_BeldumWantToSmash, MSGBOX_NPC
-	playmoncry SPECIES_BELDUM, CRY_MODE_NORMAL
-	waitmoncry
-	msgbox Text_BeldumUsedTakeDown, MSGBOX_DEFAULT
-	closemessage
-	setfieldeffectargument 3, TRUE
-	dofieldeffect FLDEFF_BELDUM_USE_ROCK_SMASH
-	waitstate
-EventScript_SmashRockBeldum2:: @ fallthrough
-	applymovement VAR_LAST_TALKED, Movement_SmashRock
-	waitmovement 0
-	removeobject VAR_LAST_TALKED
-	setflag FLAG_HIDE_METEORFALLS_ROCK2
-	goto EventScript_EndSmash
-	waitstate
-	releaseall
-	end
-
-
 
 EventScript_FollowerFieldMove:
 	getdirectiontoface VAR_0x8005, OBJ_EVENT_ID_FOLLOWER, OBJ_EVENT_ID_PLAYER
@@ -272,11 +214,6 @@ EventScript_CantSmashRock::
 	releaseall
 	end
 
-EventScript_CantSmashRockBeldum::
-	msgbox Text_CantSmashBeldum, MSGBOX_DEFAULT
-	releaseall
-	end
-
 EventScript_CancelSmash::
 	closemessage
 	releaseall
@@ -286,19 +223,9 @@ Text_WantToSmash:
 	.string "This rock appears to be breakable.\n"
 	.string "Would you like to use ROCK SMASH?$"
 
-Text_BeldumWantToSmash:
-	.string "DEVON: These rocks...\p"
-	.string "I bet with a good Take Down, we might\n" 
-	.string "be able to break one.\p"
-	.string "Can you try it, Beldum?$"
-
 Text_CantSmash:
 	.string "It's a rugged rock, but a POKéMON\n"
 	.string "may be able to smash it.$"
-
-Text_CantSmashBeldum:
-	.string "It's a rugged rock. One would have to\n"
-	.string "be as strong as steel to smash it.$"
 
 EventScript_StrengthBoulder::
 	lockall
@@ -370,10 +297,7 @@ EventScript_UseWaterfall::
 	msgbox Text_WantToWaterfall, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, EventScript_EndWaterfall
 	msgbox Text_MonUsedWaterfall, MSGBOX_DEFAULT
-	call FollowerIntoPlayerScript
-    callnative HideFollower
 	dofieldeffect FLDEFF_USE_WATERFALL
-	callnative FollowMe_WarpSetEnd
 	goto EventScript_EndWaterfall
 
 EventScript_CannotUseWaterfall::
@@ -397,40 +321,16 @@ Text_WantToWaterfall:
 Text_MonUsedWaterfall:
 	.string "{STR_VAR_1} used WATERFALL.$"
 
-
-EventScript_UseFloatyBalloonWaterfall::
-	lockall
-	msgbox Text_WantToFloatWaterfall, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, EventScript_EndWaterfall
-	msgbox Text_UsedFloatWaterfall, MSGBOX_DEFAULT
-	dofieldeffect FLDEFF_USE_WATERFALL
-	callnative FollowMe_WarpSetEnd
-	goto EventScript_EndWaterfall
-
-Text_WantToFloatWaterfall:
-	.string "It's a large waterfall.\n"
-	.string "Would you like to go up\l"
-	.string "on the FLOATY BALLOON?$"
-
-Text_UsedFloatWaterfall:
-	.string "{PLAYER} used the FLOATY BALLOON.$"
-
-
 EventScript_UseDive::
 	lockall
 	checkpartymove MOVE_DIVE
 	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantDive
-	copyvar 0x8004 VAR_RESULT
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
 	setfieldeffectargument 0, VAR_RESULT
 	setfieldeffectargument 1, 1
 	msgbox Text_WantToDive, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, EventScript_EndDive
 	msgbox Text_MonUsedDive, MSGBOX_DEFAULT
-	call FollowerIntoPlayerScript
-	callnative HideFollower
-	setfieldeffectargument 0, VAR_0x8004
-	setfieldeffectargument 1, 1
 	dofieldeffect FLDEFF_USE_DIVE
 	goto EventScript_EndDive
 	end
@@ -468,6 +368,35 @@ EventScript_EndSurface::
 	releaseall
 	end
 
+EventScript_DigCommon:
+	isfollowerfieldmoveuser VAR_0x8004
+	setfieldeffectargument 3, VAR_0x8004 @ skip pose if true
+	dofieldeffect FLDEFF_USE_DIG
+	waitstate
+EventScript_DigSealedChamber:: @ fallthrough
+	setflag FLAG_SAFE_FOLLOWER_MOVEMENT
+	call_if_eq VAR_0x8004, TRUE, EventScript_FollowerFieldMove
+	callnative DoBrailleDigEffect
+	releaseall
+	end
+
+@ Use Dig from party menu
+EventScript_UseDig::
+	lockall
+	goto EventScript_DigCommon
+
+
+EventScript_CutGrassCommon:
+	isfollowerfieldmoveuser VAR_0x8004
+	setfieldeffectargument 3, VAR_0x8004 @ skip pose if true
+	dofieldeffect FLDEFF_USE_CUT_ON_GRASS
+	waitstate
+
+@ Use Cut grass from party menu
+EventScript_UseCutGrass::
+	lockall
+	goto EventScript_CutGrassCommon
+
 Text_CantDive:
 	.string "The sea is deep here. A POKéMON\n"
 	.string "may be able to go underwater.$"
@@ -493,69 +422,3 @@ EventScript_FailSweetScent::
 
 Text_FailSweetScent:
 	.string "Looks like there's nothing here…$"
-
-FollowerPositionFixScript::
-	setvar 0x8000 0x0
-	callnative FollowerTrainerSightingPositionFix
-	compare VAR_RESULT 0xFFFF
-	goto_if_eq FollowerPositionFixScriptReturn
-	call WalkCall
-	setvar 0x8000 0x1
-	callnative FollowerTrainerSightingPositionFix
-FollowerPositionFixScriptReturn:
-	return
-    
-FollowerIntoPlayerScript::
-	setvar 0x8000 0x0
-	callnative FollowerIntoPlayer
-	compare VAR_RESULT 0xFFFF
-	goto_if_eq FollowerPositionFixScriptReturn
-	setvar 0x8005 0xFE  @ follower
-	call WalkCall
-	setvar 0x8000 0x1
-	callnative FollowerIntoPlayer
-	return
-    
-WalkCall:
-	compare VAR_RESULT 0x0
-	call_if_eq WalkDownCall
-	compare VAR_RESULT 0x1
-	call_if_eq WalkUpCall
-	compare VAR_RESULT 0x2
-	call_if_eq WalkLeftCall
-	compare VAR_RESULT 0x3
-	call_if_eq WalkRightCall
-	waitmovement 0x8005
-	return
-	
-WalkDownCall:
-	applymovement 0x8005 WalkDown
-	return
-
-WalkUpCall:
-	applymovement 0x8005 WalkUp
-	return
-
-WalkLeftCall:
-	applymovement 0x8005 WalkLeft
-	return
-
-WalkRightCall:
-	applymovement 0x8005 WalkRight
-	return
-    
-WalkDown:
-    walk_down
-    step_end 
-
-WalkUp:
-    walk_up
-    step_end
-
-WalkLeft:
-    walk_left
-    step_end
-
-WalkRight:
-    walk_right
-    step_end

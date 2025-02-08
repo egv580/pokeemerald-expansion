@@ -2293,14 +2293,18 @@ MatchCall_Text_Drake::
 	.string "Don't you agree, {PLAYER}?$"
 
 MatchCall_Text_Wallace::
-	.string "FATHER: {PLAYER}{KUN}!\p"
-	.string "My, this pocket TELEGRAPH is\n"
-	.string "remarkable, isn't it?\p"
-	.string "Are you enjoying the fresh air?\n"
-	.string "Don't forget to meet the people\p"
-	.string "who will be at your banquet!\n"
-	.string "Courtesy is a must for a future\p"
-	.string "QUEEN to master.$"
+	.string "WALLACE: Hello, {PLAYER}{KUN}.\n"
+	.string "Have you met STEVEN?\p"
+	.string "He is…\n"
+	.string "Actually incredibly skilled.\p"
+	.string "However, he's an odd soul who\n"
+	.string "rarely battles.\p"
+	.string "Instead, he would rather look for\n"
+	.string "rare stones.\p"
+	.string "I'm sure he's digging in a cave or\n"
+	.string "a craggy mountain somewhere.\p"
+	.string "But what is a rare stone exactly?\n"
+	.string "All I can think of is a METEORITE…$"
 
 MatchCall_Text_MayRayquazaCall:
 	.string "… … … … … …\n"

@@ -254,8 +254,6 @@ gScriptCmdTable::
 	script_cmd_table_entry SCR_OP_GETFOLLOWERID			        ScrCmd_getfollowerid                  @ 0xec
 
 	.if ALLOCATE_SCRIPT_CMD_TABLE
-
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop
 	.endif
-	

@@ -12,16 +12,3 @@ EventScript_ReleaseUseSurf::
 	releaseall
 EventScript_EndUseSurf::
 	end
-
-
-EventScript_UseFloatyBalloon::
-	lockall
-	msgbox gText_WantToUseFloatyBalloon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, EventScript_ReleaseUseFloatyBalloon
-	msgbox gText_PlayerUsedFloatyBalloon, MSGBOX_DEFAULT
-	setflag(FLAG_FLOATYBALLOON_IS_ACTIVE)
-	dofieldeffect FLDEFF_SURF_WITH_BALLOON
-EventScript_ReleaseUseFloatyBalloon::
-	releaseall
-EventScript_EndUseFloatyBalloon::
-	end

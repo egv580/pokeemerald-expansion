@@ -284,6 +284,14 @@ gFieldEffectScript_HeartIcon::
 	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_HeartIcon
 	field_eff_end
 
+gFieldEffectScript_Nop47::
+	field_eff_callnative FldEff_Nop47
+	field_eff_end
+
+gFieldEffectScript_Nop48::
+	field_eff_callnative FldEff_Nop48
+	field_eff_end
+
 gFieldEffectScript_AshPuff::
 	field_eff_loadfadedpal_callnative gSpritePalette_Ash, FldEff_AshPuff
 	field_eff_end
